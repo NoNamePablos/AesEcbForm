@@ -1,0 +1,11 @@
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\bin\Debug\AesEncryption.exe.config
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\bin\Debug\AesEncryption.exe
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\bin\Debug\AesEncryption.pdb
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.csproj.SuggestedBindingRedirects.cache
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.AesEncryption.resources
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.Properties.Resources.resources
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.exe
+C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.pdb
