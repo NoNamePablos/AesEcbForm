@@ -52,7 +52,7 @@
             this.richTextBoxTextEnter = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxInition = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -99,20 +99,23 @@
             // сохранитьКлючToolStripMenuItem
             // 
             this.сохранитьКлючToolStripMenuItem.Name = "сохранитьКлючToolStripMenuItem";
-            this.сохранитьКлючToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.сохранитьКлючToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.сохранитьКлючToolStripMenuItem.Text = "Сохранить ключ";
+            this.сохранитьКлючToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКлючToolStripMenuItem_Click);
             // 
             // сохранитьТекстToolStripMenuItem
             // 
             this.сохранитьТекстToolStripMenuItem.Name = "сохранитьТекстToolStripMenuItem";
-            this.сохранитьТекстToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.сохранитьТекстToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.сохранитьТекстToolStripMenuItem.Text = "Сохранить текст";
+            this.сохранитьТекстToolStripMenuItem.Click += new System.EventHandler(this.сохранитьТекстToolStripMenuItem_Click);
             // 
             // сохранитьВыводToolStripMenuItem
             // 
             this.сохранитьВыводToolStripMenuItem.Name = "сохранитьВыводToolStripMenuItem";
-            this.сохранитьВыводToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.сохранитьВыводToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.сохранитьВыводToolStripMenuItem.Text = "Сохранить вывод";
+            this.сохранитьВыводToolStripMenuItem.Click += new System.EventHandler(this.сохранитьВыводToolStripMenuItem_Click);
             // 
             // загрузитьToolStripMenuItem
             // 
@@ -167,6 +170,7 @@
             // 
             // comboBoxSizeKey
             // 
+            this.comboBoxSizeKey.Enabled = false;
             this.comboBoxSizeKey.FormattingEnabled = true;
             this.comboBoxSizeKey.Location = new System.Drawing.Point(131, 89);
             this.comboBoxSizeKey.Name = "comboBoxSizeKey";
@@ -223,7 +227,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 190);
+            this.label4.Location = new System.Drawing.Point(16, 236);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 17);
             this.label4.TabIndex = 3;
@@ -232,9 +236,9 @@
             // richTextBoxTextClose
             // 
             this.richTextBoxTextClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBoxTextClose.Location = new System.Drawing.Point(6, 210);
+            this.richTextBoxTextClose.Location = new System.Drawing.Point(6, 259);
             this.richTextBoxTextClose.Name = "richTextBoxTextClose";
-            this.richTextBoxTextClose.Size = new System.Drawing.Size(381, 228);
+            this.richTextBoxTextClose.Size = new System.Drawing.Size(381, 179);
             this.richTextBoxTextClose.TabIndex = 2;
             this.richTextBoxTextClose.Text = "";
             // 
@@ -252,7 +256,7 @@
             this.richTextBoxTextEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBoxTextEnter.Location = new System.Drawing.Point(6, 45);
             this.richTextBoxTextEnter.Name = "richTextBoxTextEnter";
-            this.richTextBoxTextEnter.Size = new System.Drawing.Size(381, 129);
+            this.richTextBoxTextEnter.Size = new System.Drawing.Size(381, 188);
             this.richTextBoxTextEnter.TabIndex = 0;
             this.richTextBoxTextEnter.Text = "";
             // 
@@ -268,7 +272,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.richTextBox1);
+            this.groupBox3.Controls.Add(this.richTextBoxInition);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.Location = new System.Drawing.Point(15, 314);
             this.groupBox3.Name = "groupBox3";
@@ -277,14 +281,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Начальные данные";
             // 
-            // richTextBox1
+            // richTextBoxInition
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBox1.Location = new System.Drawing.Point(6, 28);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(298, 151);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.richTextBoxInition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBoxInition.Location = new System.Drawing.Point(6, 28);
+            this.richTextBoxInition.Name = "richTextBoxInition";
+            this.richTextBoxInition.Size = new System.Drawing.Size(298, 151);
+            this.richTextBoxInition.TabIndex = 1;
+            this.richTextBoxInition.Text = "";
             // 
             // AesEncryption
             // 
@@ -339,7 +343,7 @@
         private System.Windows.Forms.ToolStripMenuItem загрузитьКлючToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загрузитьТекстToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxInition;
         private System.Windows.Forms.ToolStripMenuItem загрузитьЗашифрованныйТекстToolStripMenuItem;
     }
 }

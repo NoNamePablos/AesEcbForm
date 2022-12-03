@@ -9,3 +9,14 @@ C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.
 C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.csproj.CoreCompileInputs.cache
 C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.exe
 C:\Users\Admin\source\repos\AesEncryption\AesEncryption\obj\Debug\AesEncryption.pdb
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\bin\Debug\AesEncryption.exe.config
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\bin\Debug\AesEncryption.exe
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\bin\Debug\AesEncryption.pdb
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\obj\Debug\AesEncryption.csproj.AssemblyReference.cache
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\obj\Debug\AesEncryption.csproj.SuggestedBindingRedirects.cache
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\obj\Debug\AesEncryption.AesEncryption.resources
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\obj\Debug\AesEncryption.Properties.Resources.resources
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\obj\Debug\AesEncryption.csproj.GenerateResource.cache
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\obj\Debug\AesEncryption.csproj.CoreCompileInputs.cache
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\obj\Debug\AesEncryption.exe
+C:\Users\serej\source\repos\AesEcbForm\AesEncryption\obj\Debug\AesEncryption.pdb

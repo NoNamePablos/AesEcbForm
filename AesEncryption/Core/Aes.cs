@@ -93,8 +93,8 @@ namespace AesEncryption
         private static byte[,] generateSubkeys(byte[] key)
         {
             byte[,] tmp = new byte[Nb * (Nr + 1), 4];
-            Logger.messageString="\nФункция Key Expansion\n";
-            //Console.WriteLine("Переданный ключ в функцию:\n" + Logger.ByteArrayToString(key) + "\n");
+            Console.WriteLine("\nФункция Key Expansion\n");
+            Console.WriteLine("Переданный ключ в функцию:\n" + Logger.ByteArrayToString(key) + "\n");
             int i = 0;
             while (i < Nk)
             {
@@ -132,7 +132,7 @@ namespace AesEncryption
                 tmp[i, 3] = result[3];
                 i++;
             }
-            
+
             Console.WriteLine("Полученный ключ :\n" + Logger.ByteArrayToString(tmp) + "\nВыход из функции KeyExpansion\n");
             return tmp;
         }
@@ -156,7 +156,7 @@ namespace AesEncryption
             tmp[1] = input[2];
             tmp[2] = input[3];
             tmp[3] = input[0];
-            
+
             return tmp;
         }
 
@@ -170,6 +170,7 @@ namespace AesEncryption
                 for (int l = 0; l < 4; l++)
                     tmp[l, c] = (byte)(state[l, c] ^ w[round * Nb + c, l]);
             }
+
             return tmp;
         }
 
@@ -274,78 +275,73 @@ namespace AesEncryption
         public static byte[] encryptBloc(byte[] inp)
         {
             byte[] tmp = new byte[inp.Length];
-            //Console.WriteLine("Шифрование блока 1 раунд:\n");
+            Console.WriteLine("Шифрование блока 1 раунд:\n");
             //Console.WriteLine("Входной блок текста\n"+Logger.log(inp)+"\n");
-            //Console.WriteLine("Входной блок текста\n"+Logger.ByteArrayToString(inp) + "\n");
+            Console.WriteLine("Входной блок текста\n" + Logger.ByteArrayToString(inp) + "\n");
             // Для теста 1 раунд шифрования блока
-            bool isOneRound = true;
-            int oneRound = 0;
-            if (isOneRound) {
-                oneRound = 2;
-            }
+           
 
             byte[,] state = new byte[4, Nb];
 
             for (int i = 0; i < inp.Length; i++)
                 state[i / 4, i % 4] = inp[i % 4 * 4 + i / 4];
-            //Console.WriteLine("Выполнение функции AddRoundKey\n");
+            Console.WriteLine("Выполнение функции AddRoundKey\n");
             state = AddRoundKey(state, w, 0);
-            //Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
+            Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
             //Console.WriteLine(Logger.ByteArrayToString(Logger.convertArray(state)) + "\n");
-            //Console.WriteLine("Конец выполнения функции AddRoundKey\n");
+            Console.WriteLine("Конец выполнения функции AddRoundKey\n");
 
-            //for (int round = 1; round < Nr; round++)
-                for (int round = 1; round < Nr; round++)
+            for (int round = 1; round < Nr; round++)
             {
-                //Console.WriteLine("Выполнение функции SubBytes\n");
+                Console.WriteLine("Выполнение функции SubBytes\n");
                 state = SubBytes(state);
                 //Console.WriteLine(Logger.Log2Arr(state) + "\n");
-                //Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
-                //Console.WriteLine("Конец выполнения функции SubBytes\n");
+                Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
+                Console.WriteLine("Конец выполнения функции SubBytes\n");
 
-                //Console.WriteLine("Выполнение функции ShiftRows\n");
+                Console.WriteLine("Выполнение функции ShiftRows\n");
                 state = ShiftRows(state);
                 //Console.WriteLine(Logger.Log2Arr(state) + "\n");
-                //Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
-                //Console.WriteLine("Конец выполнения функции ShiftRows\n");
+                Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
+                Console.WriteLine("Конец выполнения функции ShiftRows\n");
 
-                //Console.WriteLine("Выполнение функции MixColumns\n");
+                Console.WriteLine("Выполнение функции MixColumns\n");
                 state = MixColumns(state);
                 //Console.WriteLine(Logger.Log2Arr(state) + "\n");
-                //Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
-                //Console.WriteLine("Конец выполнения функции MixColumns\n");
-             
-                //Console.WriteLine("Выполнение функции AddRoundKey\n");
+                Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
+                Console.WriteLine("Конец выполнения функции MixColumns\n");
+
+                Console.WriteLine("Выполнение функции AddRoundKey\n");
                 state = AddRoundKey(state, w, round);
                 //Console.WriteLine(Logger.Log2Arr(state) + "\n");
-                //Console.WriteLine(" " + Logger.ByteArrayToString(state)+ "\n");
-                //Console.WriteLine("Конец выполнения функции AddRoundKey\n");
-                //Console.WriteLine("Конец шифрования (1 раунд)\n");
+                Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
+                Console.WriteLine("Конец выполнения функции AddRoundKey\n");
+                Console.WriteLine("Конец шифрования (1 раунд)\n");
 
             }
-            //Console.WriteLine("Выполнение функции SubBytes\n");
+            Console.WriteLine("Выполнение функции SubBytes\n");
             state = SubBytes(state);
             //Console.WriteLine(Logger.Log2Arr(state) + "\n");
-            //Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
-            //Console.WriteLine("Конец выполнения функции SubBytes\n");
+            Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
+            Console.WriteLine("Конец выполнения функции SubBytes\n");
 
-            //Console.WriteLine("Выполнение функции ShiftRows\n");
+            Console.WriteLine("Выполнение функции ShiftRows\n");
             state = ShiftRows(state);
             //Console.WriteLine(Logger.Log2Arr(state) + "\n");
-            //Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
-            //Console.WriteLine("Конец выполнения функции ShiftRows\n");
+            Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
+            Console.WriteLine("Конец выполнения функции ShiftRows\n");
 
-            //Console.WriteLine("Выполнение функции AddRoundKey\n");
+            Console.WriteLine("Выполнение функции AddRoundKey\n");
             state = AddRoundKey(state, w, Nr);
             //Console.WriteLine(Logger.Log2Arr(state) + "\n");
-            //Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
-            //Console.WriteLine("Конец выполнения функции AddRoundKey");
+            Console.WriteLine(" " + Logger.ByteArrayToString(state) + "\n");
+            Console.WriteLine("Конец выполнения функции AddRoundKey");
             for (int i = 0; i < tmp.Length; i++)
                 tmp[i % 4 * 4 + i / 4] = state[i / 4, i % 4];
 
-            //Console.WriteLine("Финал\n");
+            Console.WriteLine("Финал\n");
             //Console.WriteLine(Logger.log(tmp) + "\n");
-            //Console.WriteLine(" " + Logger.ByteArrayToString(tmp) + "\n");
+            Console.WriteLine(" " + Logger.ByteArrayToString(tmp) + "\n");
             return tmp;
         }
 
@@ -377,26 +373,28 @@ namespace AesEncryption
             return tmp;
         }
 
-        public static byte[] encrypt(byte[] inp, byte[] key)
+        public static byte[] encrypt(byte[] inp, byte[] key,ref string log)
         {
 
             Nb = 4;
             Nk = key.Length / 4;
             Nr = Nk + 6;
 
-            //Console.WriteLine("Начальные настройки:\nNb: " + Nb + "\n");
-            //Console.WriteLine("Nk: " + Nk + "\n");
-            //Console.WriteLine("Nr: " + Nr + "\n");
-
+            log += "Начальные настройки:\nNb: "+ Nb.ToString() + "\n";
+            Console.WriteLine("Начальные настройки:\nNb: " + Nb + "\n");
+            Console.WriteLine("Nk: " + Nk + "\n");
+            Console.WriteLine("Nr: " + Nr + "\n");
+            log += "Nk: " + Nk + "\n";
+            log += "Nr: " + Nr + "\n";
             int lenght = 0;
             byte[] padding = new byte[1];
             int i;
             lenght = 16 - inp.Length % 16;
             padding = new byte[lenght];
             padding[0] = (byte)0x80;
-            
-            //Console.WriteLine("Длина текста: "+inp.Length+"\n");
-            //Console.WriteLine("Дозаполнить количеством: " + lenght + "\n");
+
+            Console.WriteLine("Длина текста: " + inp.Length + "\n");
+            Console.WriteLine("Дозаполнить количеством: " + lenght + "\n");
 
             for (i = 1; i < lenght; i++)
                 padding[i] = 0;
@@ -408,7 +406,6 @@ namespace AesEncryption
             w = generateSubkeys(key);
 
             int count = 0;
-            //Console.WriteLine("Если текст > 16  бьём на блоки по 16 байт\n");
             int countBlocks = 0;
             for (i = 0; i < inp.Length + lenght; i++)
             {
@@ -417,7 +414,7 @@ namespace AesEncryption
                     bloc = encryptBloc(bloc);
                     Array.Copy(bloc, 0, tmp, i - 16, bloc.Length);
                     countBlocks++;
-                    //Console.WriteLine("Защифрован блок "+ countBlocks+"\n"+Logger.ByteArrayToString(bloc)+"\n\n");
+                    Console.WriteLine("Защифрован блок " + countBlocks + "\n" + Logger.ByteArrayToString(bloc) + "\n\n");
 
 
                 }
@@ -431,7 +428,7 @@ namespace AesEncryption
             }
             if (bloc.Length == 16)
             {
-                //Console.WriteLine("Длина блока ровна 16 шифруем\n");
+                Console.WriteLine("Длина блока ровна 16 шифруем\n");
                 bloc = encryptBloc(bloc);
                 Array.Copy(bloc, 0, tmp, i - 16, bloc.Length);
             }
@@ -439,12 +436,15 @@ namespace AesEncryption
             return tmp;
         }
 
-        public static byte[] decrypt(byte[] inp, byte[] key)
+        public static byte[] decrypt(byte[] inp, byte[] key,ref string logger)
         {
             int i;
             byte[] tmp = new byte[inp.Length];
             byte[] bloc = new byte[16];
-
+            logger += "Начальные настройки при дешифровки:\nNb: " + Nb.ToString() + "\n";
+           
+            logger += "Nk: " + Nk + "\n";
+            logger += "Nr: " + Nr + "\n";
 
             Nb = 4;
             Nk = key.Length / 4;
