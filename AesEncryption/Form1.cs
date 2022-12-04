@@ -29,35 +29,77 @@ namespace AesEncryption
             comboBoxSizeKey.Items.Add("256");
 
         }
+        public static Encoding DetectEncoding(String fileName, out String contents)
+        {
+            // open the file with the stream-reader:
+            using (StreamReader reader = new StreamReader(fileName, true))
+            {
+                // read the contents of the file into a string
+                contents = reader.ReadToEnd();
 
+                // return the encoding.
+                return reader.CurrentEncoding;
+            }
+        }
         private void buttonEnccrypt_Click(object sender, EventArgs e)
         {
+            //FileInfo fileKey = new FileInfo("key-192.txt");
+            //FileInfo fileMessage = new FileInfo("2.txt");
+            Random d = new Random();
+            string path = "decr" + d.Next(1, 10000).ToString() + ".txt";
+            BinaryWriter chiperStream = new BinaryWriter(File.Open(path, FileMode.Create), Encoding.UTF8);
+
+
             byte[] messageByte = null;
             byte[] keyByte = null;
             string logger = "";
             long keyFromTextSize = textBoxKey.Text.Length;
             long sourceTextEnter = richTextBoxTextEnter.Text.Length;
-            keyByte = new byte[(int)keyFromTextSize];
 
-            keyByte = encoding.GetBytes(textBoxKey.Text);
+            saveFile("binaryKey_key.txt", textBoxKey.Text);
 
-            messageByte = new byte[(int)sourceTextEnter];
-            messageByte = encoding.GetBytes(richTextBoxTextEnter.Text);
+
+
+            FileInfo fileKey = new FileInfo("binaryKey_key.txt");
+            BinaryReader keyStream = new BinaryReader(File.Open("binaryKey_key.txt", FileMode.Open));
+            keyByte = new byte[(int)fileKey.Length];
+            keyStream.Read(keyByte, 0, (int)fileKey.Length);
+            keyStream.Close();
+
+
+            Random d1 = new Random();
+            string path1 = "binaryKey" + d.Next(1, 10000).ToString() + ".txt";
+            if (sourceText != null) { 
+                File.Copy(sourceText, path1);
+            }
+
+            saveFile(path1, richTextBoxTextEnter.Text);
+
+
+
+
+            //File.WriteAllBytes(path1,Encoding.Default.GetBytes(richTextBoxTextEnter.Text));
+            FileInfo fileMessage = new FileInfo(path1);
+            BinaryReader messageStream = new BinaryReader(File.Open(path1, FileMode.Open));
+            messageByte = new byte[(int)fileMessage.Length];
+            messageStream.Read(messageByte, 0, (int)fileMessage.Length);
+
             if (messageByte != null && keyByte != null && checkKeySizeGlobal(textBoxKey.Text))
             {
 
-                var chiperByte = Aes.encrypt(messageByte, keyByte, ref logger);
-                richTextBoxInition.Text = logger;
-                BinaryWriter chiperStream = new BinaryWriter(File.Open("3.txt", FileMode.Create),Encoding.UTF8);
+                var chiperByte = Aes.encrypt(messageByte, keyByte);
+                //richTextBoxInition.Text = logger;
+                //BinaryWriter chiperStream = new BinaryWriter(File.Open("3.txt", FileMode.Create),Encoding.Unicode);
                 chiperStream.Write(chiperByte);
                 chiperStream.Close();
-                richTextBoxTextClose.Text = encoding.GetString(chiperByte);
-                myDecoder s = new myDecoder(encoding.GetString(chiperByte), encoding.GetString(chiperByte));
-                lst.Add(s);
+                richTextBoxTextClose.Text = Encoding.Unicode.GetString(chiperByte);
+                //myDecoder s = new myDecoder(encoding.GetString(chiperByte), encoding.GetString(chiperByte));
+                //lst.Add(s);
 
 
 
-                MessageBox.Show("Файл был успешно зашифрован");
+                MessageBox.Show("Файл успешно сохранен " + path, "Успешно");
+                messageStream.Close();
 
 
             }
@@ -76,25 +118,66 @@ namespace AesEncryption
             string log = "";
             long keyFromTextSize = textBoxKey.Text.Length;
             long sourceTextEnter = richTextBoxTextEnter.Text.Length;
-            keyByte = new byte[(int)keyFromTextSize];
 
-            keyByte = encoding.GetBytes(textBoxKey.Text);
+            //FileInfo fileKey = new FileInfo("key-192.txt");
+            //FileInfo fileMessage = new FileInfo("decr.txt");
+            Random d = new Random();
+            string path = "encr" + d.Next(1, 10000).ToString() + ".txt";
+            BinaryWriter chiperStream = new BinaryWriter(File.Open(path, FileMode.Create), Encoding.UTF8);
+
+            //BinaryWriter chiperStream12 = new BinaryWriter(File.Open("binaryKey_key.txt", FileMode.Create), Encoding.UTF8);
+            //chiperStream12.Write(textBoxKey.Text);
+            //chiperStream12.Close();
+
+            saveFile("binaryKey_key.txt", textBoxKey.Text);
 
 
-            messageByte = new byte[(int)sourceTextEnter];
-            messageByte = encoding.GetBytes(richTextBoxTextEnter.Text);
+
+            FileInfo fileKey = new FileInfo("binaryKey_key.txt");
+            BinaryReader keyStream = new BinaryReader(File.Open("binaryKey_key.txt", FileMode.Open));
+            keyByte = new byte[(int)fileKey.Length];
+            keyStream.Read(keyByte, 0, (int)fileKey.Length);
+            keyStream.Close();
+
+
+            //BinaryWriter chiperStream1 = new BinaryWriter(File.Open("binaryKey.txt", FileMode.Create),Encoding.UTF8);
+            //chiperStream1.Write(richTextBoxTextEnter.Text);
+            //chiperStream1.Close();
+
+            Random d1 = new Random();
+            string path1 = "binaryKey" + d.Next(1, 10000).ToString() + ".txt";
+
+
+            //string str = "";
+            //Encoding dct=DetectEncoding(sourceDecryptText,out str);
+
+            //File.Copy(sourceDecryptText, path1);
+
+            //saveFile(path1, richTextBoxTextEnter.Text);
+
+            //File.WriteAllBytes(path1,Encoding.Default.GetBytes(richTextBoxTextEnter.Text));
+            FileInfo fileMessage = new FileInfo(sourceDecryptText);
+            BinaryReader messageStream = new BinaryReader(File.Open(sourceDecryptText, FileMode.Open));
+            messageByte = new byte[(int)fileMessage.Length];
+            messageStream.Read(messageByte, 0, (int)fileMessage.Length);
+            //messageStream.Close();
+            //messageByte = Encoding.Unicode.GetBytes(richTextBoxTextEnter.Text);
+            
+            
             if (messageByte != null && keyByte != null&& checkKeySizeGlobal(textBoxKey.Text))
             {
 
-                var chiperByte = Aes.decrypt(messageByte, keyByte, ref log);
-                BinaryWriter chiperStream = new BinaryWriter(File.Open("decrypt.txt", FileMode.Create));
+                var chiperByte = Aes.decrypt(messageByte, keyByte);
+                //BinaryWriter chiperStream = new BinaryWriter(File.Open("decrypt.txt", FileMode.Create),Encoding.Unicode);
 
                 chiperStream.Write(chiperByte);
                 chiperStream.Close();
                 richTextBoxInition.Text = log;
                 richTextBoxTextClose.Text = encoding.GetString(chiperByte);
+
                 //richTextBoxTextClose.Text = chiperByte.ToString();
-                MessageBox.Show("Файл был успешно расшифрован");
+                MessageBox.Show("Файл успешно сохранен "+path,"Успешно");
+                messageStream.Close();
             }
             else
             {
@@ -122,8 +205,23 @@ namespace AesEncryption
             File.WriteAllText(filename, text,Encoding.UTF8);
             return true;
         }
+        private static bool saveFile(string path,string text)
+        {
 
 
+            string filename = path;
+            File.WriteAllText(filename, text);
+            return true;
+        }
+
+        private static bool saveFile(string path, string text,Encoding enc)
+        {
+
+
+            string filename = path;
+            File.WriteAllText(filename, text, enc);
+            return true;
+        }
 
 
         private static string getFilename()
@@ -187,8 +285,9 @@ namespace AesEncryption
         {
             string FName = getFilename(); // пользователь выбирает файл
             if (FName == null) return; // если файл не выбран
-            string text = File.ReadAllText(FName);
-            richTextBoxTextEnter.Text = File.ReadAllText(FName, Encoding.UTF8);
+
+            byte[] text = File.ReadAllBytes(FName);
+            richTextBoxTextEnter.Text = Encoding.Unicode.GetString(text);
             sourceDecryptText = FName;
         }
 
@@ -218,11 +317,18 @@ namespace AesEncryption
             saveFile(richTextBoxTextClose.Text);
         }
 
+        private void richTextBoxTextEnter_TextChanged(object sender, EventArgs e)
+        {
+            //BinaryWriter chiperStream = new BinaryWriter(File.Open("binary_tempfile.txt", FileMode.Create), Encoding.UTF8);
+            //chiperStream.Write(richTextBoxTextEnter.Text);
+            //chiperStream.Close(
+        }
+
         private void загрузитьТекстToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string FName = getFilename(); // пользователь выбирает файл
             if (FName == null) return; // если файл не выбран
-            string text = File.ReadAllText(FName,Encoding.UTF8);
+            string text = File.ReadAllText(FName);
             richTextBoxTextEnter.Text = text;
             sourceText = FName;
         }
